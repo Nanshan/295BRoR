@@ -26,7 +26,6 @@ class ResturantsController < ApplicationController
   def create
     @resturant = Resturant.new(resturant_params)
     @resturant.save
-    end
   end
 
   # PATCH/PUT /resturants/1
