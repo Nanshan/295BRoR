@@ -24,9 +24,8 @@ class ResturantsController < ApplicationController
   # POST /resturants
   # POST /resturants.json
   def create
-    @resturant = Resturant.new(resturant_params)
+    @resturant = Resturant.new(name: params[:name], address: params[:address])
     @resturant.save
-    end
   end
 
   # PATCH/PUT /resturants/1
