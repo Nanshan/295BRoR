@@ -2,8 +2,8 @@
 
 one:
   latitude: MyString
-  longtitude: MyString
+  longitude: MyString
 
 two:
   latitude: MyString
-  longtitude: MyString
+  longitude: MyString
