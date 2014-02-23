@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
   def create
      #@resturant =  Resturant.find_by(latitude:  params[:latitude], longitude: params[:longitude]) 
      #if @resturant != nil
-         @location = Location.new(latitude: params[:latitude], longitude: params[:longitude]) 
+         @location = Location.new(latitude: params[:latitude], longitude: params[:longitude], userID: params[:userID]) 
          @location.save
       #end
   end
