@@ -1,0 +1,28 @@
+<h1>Listing locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>userid</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>posttime</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.userID %></td>
+        <td><%= event.latitude %></td>
+        <td><%= event.longitude %></td>
+        <td><%= event.created_at %></td>
+      </tr>
+    <% end %>
+    <%= @alert %>
+  </tbody>
+</table>
+
+<br>
+
+~                                                    

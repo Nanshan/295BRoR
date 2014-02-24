@@ -30,6 +30,17 @@ class LocationsController < ApplicationController
          @location.save
       #end
   end
+ 
+  def alert
+     @user_id = params[:userID]
+     # find 3 most recent events in Location table for this user_id
+     # if all 3 have same location
+     # then get the restaurant at that location
+     # and return the alert
+     #
+     # else (not have 3 most recent events having same location which means user has not been there 15 minutes or maybe user left)
+     # return no alert
+  end
 
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
