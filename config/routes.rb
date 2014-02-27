@@ -1,4 +1,6 @@
 SelfTracking295B::Application.routes.draw do
+  resources :histories
+
   resources :resturants
   resources :locations 
   root to: "users#index"

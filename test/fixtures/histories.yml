@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  userId: MyString
+  latitude: MyString
+  longitude: MyString
+  like: MyString
+
+two:
+  userId: MyString
+  latitude: MyString
+  longitude: MyString
+  like: MyString

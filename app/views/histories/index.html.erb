@@ -1,0 +1,33 @@
+<h1>Listing histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Userid</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Like</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= history.userId %></td>
+        <td><%= history.latitude %></td>
+        <td><%= history.longitude %></td>
+        <td><%= history.like %></td>
+        <td><%= link_to 'Show', history %></td>
+        <td><%= link_to 'Edit', edit_history_path(history) %></td>
+        <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New History', new_history_path %>
