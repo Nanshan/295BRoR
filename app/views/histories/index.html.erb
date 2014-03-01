@@ -7,7 +7,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Like</th>
-      <th></th>
+      <th>CreatedTime</th>
       <th></th>
       <th></th>
     </tr>
@@ -20,14 +20,10 @@
         <td><%= history.latitude %></td>
         <td><%= history.longitude %></td>
         <td><%= history.like %></td>
-        <td><%= link_to 'Show', history %></td>
-        <td><%= link_to 'Edit', edit_history_path(history) %></td>
-        <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= history.created_at %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New History', new_history_path %>
