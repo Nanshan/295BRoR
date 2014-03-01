@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227045006) do
+ActiveRecord::Schema.define(version: 20140301184059) do
 
   create_table "histories", force: true do |t|
     t.string   "userId"
@@ -40,9 +40,29 @@ ActiveRecord::Schema.define(version: 20140227045006) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "userId"
+    t.string   "first_name"
+    t.string   "middle_initial"
+    t.string   "last_name"
+    t.string   "date_of_birth"
+    t.string   "gender"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "martial_status"
+    t.string   "current_location"
+    t.string   "hometown_city"
+    t.string   "hometown_state"
+    t.string   "hometown_country"
+    t.string   "education_level"
+    t.string   "profession"
+    t.string   "employer"
+    t.string   "past_employer_1"
+    t.string   "has_kids"
+    t.string   "number_of_kids"
+    t.string   "number_of_tweets"
+    t.string   "number_of_followers"
   end
 
 end
