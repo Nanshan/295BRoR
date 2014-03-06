@@ -1,4 +1,8 @@
 SelfTracking295B::Application.routes.draw do
+  resources :attractions
+
+  resources :parks
+
   resources :histories
 
   resources :resturants

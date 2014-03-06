@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301184059) do
+ActiveRecord::Schema.define(version: 20140306184501) do
+
+  create_table "attractions", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "price"
+    t.string   "rating"
+    t.string   "reviews"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "category"
+    t.string   "parking"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "histories", force: true do |t|
     t.string   "userId"
@@ -30,6 +48,23 @@ ActiveRecord::Schema.define(version: 20140301184059) do
     t.string   "userID"
   end
 
+  create_table "parks", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "price"
+    t.string   "rating"
+    t.string   "reviews"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "parking"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "resturants", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -37,6 +72,15 @@ ActiveRecord::Schema.define(version: 20140301184059) do
     t.datetime "updated_at"
     t.string   "latitude"
     t.string   "longitude"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "price"
+    t.string   "rating"
+    t.string   "reviews"
+    t.string   "category"
   end
 
   create_table "users", force: true do |t|
