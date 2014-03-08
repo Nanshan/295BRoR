@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all
+        
   end
 
   # GET /locations/1
@@ -27,7 +28,9 @@ class LocationsController < ApplicationController
      #@resturant =  Resturant.find_by(latitude:  params[:latitude], longitude: params[:longitude]) 
      #if @resturant != nil
          @location = Location.new(latitude: params[:latitude], longitude: params[:longitude], userID: params[:userID]) 
+      
          @location.save
+         
       #end
   end
  

@@ -1,4 +1,3 @@
 json.array!(@resturants) do |resturant|
-  json.extract! resturant, :name, :address
-  #json.url resturant_url(resturant, format: :json)
+  json.extract! resturant, :name, :address, :city, :state, :country, :zip, :phone, :price, :rating, :reviews, :category
 end

@@ -1,3 +1,3 @@
 json.array!(@parks) do |park|
-  json.extract! park, :name, :address, :city, :country, :zip, :phone, :price, :rating, :reviews, :latitude, :longitude, :parking
+  json.extract! park, :name, :address, :city, :state,  :country, :zip, :phone, :price, :rating, :reviews, :parking, :category, :bbq, :sport
 end
