@@ -5,9 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Address</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th></th>
+      <th>City</th>
+      <th>State</th>
+      <th>Phone</th>
     </tr>
   </thead>
 
@@ -16,9 +16,11 @@
       <tr>
         <td><%= resturant.name %></td>
         <td><%= resturant.address %></td>
+        <td><%= resturant.city %></td>
+        <td><%= resturant.state%></td>
 
-        <td><%= resturant.latitude %></td>
-        <td><%= resturant.longitude%></td>
+        <td><%= resturant.phone%></td>
+
 <!--        <td><%= link_to 'Show', resturant %></td>
         <td><%= link_to 'Edit', edit_resturant_path(resturant) %></td>
         <td><%= link_to 'Destroy', resturant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
