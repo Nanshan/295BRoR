@@ -5,18 +5,21 @@ class ResturantsController < ApplicationController
   # GET /resturants.json
   def index
     @category = params[:category]
-    @lat = params[:lat].to_f
-    @long = params[:long].to_f
+    @lat = params[:lat].to_f.abs
+    @long = params[:long].to_f.abs
     @resturants = Resturant.where(["category = ?", @category]).all
-    for r in @resturants
-      @r_lat = r.latitude.to_f
-      @r_long = r.longitude.to_f
-      if ((@lat-@r_lat).abs >= 0.1) or ((@long-@r_long).abs >= 0.1)
-        @resturants.delete(r)
+    if (params[:lat] != nil and params[:long] != nil)
+      for r in @resturants
+        @r_lat = r.latitude.to_f.abs
+        @r_long = r.longitude.to_f.abs
+        if ((@lat-@r_lat).abs >= 1) or ((@long-@r_long).abs >= 1)
+          @resturants.delete(r)
+        end
       end
     end
-    @resturants = @resturants[0..2]
-    # return 10 max?
+    if (@resturants.length > 3)
+      @resturants = @resturants[0..2]
+    end
     # order by number of likes?
   end
 

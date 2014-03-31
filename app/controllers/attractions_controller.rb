@@ -5,18 +5,21 @@ class AttractionsController < ApplicationController
   # GET /attractions.json
   def index
     @category = params[:category]
-    @lat = params[:lat].to_f
-    @long = params[:long].to_f
+    @lat = params[:lat].to_f.abs
+    @long = params[:long].to_f.abs
     @attractions = Attraction.where(["category = ?", @category]).all
-    for r in @attractions
-      @r_lat = r.latitude.to_f
-      @r_long = r.longitude.to_f
-      if ((@lat-@r_lat).abs >= 0.1) or ((@long-@r_long).abs >= 0.1)
-        @attractions.delete(r)
-      end
+    if (params[:lat] != nil and params[:long] != nil)
+      for r in @attractions
+        @r_lat = r.latitude.to_f.abs
+        @r_long = r.longitude.to_f.abs
+        if ((@lat-@r_lat).abs >= 1) or ((@long-@r_long).abs >= 1)
+          @attractions.delete(r)
+        end
+      end   
     end
-    @attractions = @attractions[0..2]
-    # return 10 max?
+    if (@attractions.length > 3)
+      @attractions = @attractions[0..2]
+    end
     # order by number of likes?
   end
 
