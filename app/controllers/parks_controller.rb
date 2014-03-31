@@ -4,7 +4,20 @@ class ParksController < ApplicationController
   # GET /parks
   # GET /parks.json
   def index
-    @parks = Park.all
+    @category = params[:category]
+    @lat = params[:lat].to_f
+    @long = params[:long].to_f
+    @parks = Park.where(["category = ?", @category]).all
+    for r in @parks
+      @r_lat = r.latitude.to_f
+      @r_long = r.longitude.to_f
+      if ((@lat-@r_lat).abs >= 0.1) or ((@long-@r_long).abs >= 0.1)
+        @parks.delete(r)
+      end
+    end
+    @parks = @parks[0..2]
+    # return 10 max?
+    # order by number of likes?
   end
 
   # GET /parks/1

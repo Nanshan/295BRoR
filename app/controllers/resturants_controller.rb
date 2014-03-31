@@ -4,7 +4,20 @@ class ResturantsController < ApplicationController
   # GET /resturants
   # GET /resturants.json
   def index
-    @resturants = Resturant.all
+    @category = params[:category]
+    @lat = params[:lat].to_f
+    @long = params[:long].to_f
+    @resturants = Resturant.where(["category = ?", @category]).all
+    for r in @resturants
+      @r_lat = r.latitude.to_f
+      @r_long = r.longitude.to_f
+      if ((@lat-@r_lat).abs >= 0.1) or ((@long-@r_long).abs >= 0.1)
+        @resturants.delete(r)
+      end
+    end
+    @resturants = @resturants[0..2]
+    # return 10 max?
+    # order by number of likes?
   end
 
   # GET /resturants/1
