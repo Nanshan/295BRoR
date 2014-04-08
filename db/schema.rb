@@ -11,32 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140330202733) do
-
-  create_table "attractions", force: true do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "country"
-    t.string "zip"
-    t.string "phone"
-    t.string "price"
-    t.string "rating"
-    t.string "reviews"
-    t.string "latitude"
-    t.string "longitude"
-    t.string "category"
-    t.string "parking"
-    t.string "state"
-  end
+ActiveRecord::Schema.define(version: 20140408025325) do
 
   create_table "histories", force: true do |t|
     t.string   "userId"
-    t.string   "latitude"
-    t.string   "longitude"
     t.string   "like"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "dislike"
+    t.integer  "placeID"
   end
 
   create_table "locations", force: true do |t|
@@ -47,38 +30,39 @@ ActiveRecord::Schema.define(version: 20140330202733) do
     t.string   "userID"
   end
 
-  create_table "parks", force: true do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "country"
-    t.string "zip"
-    t.string "phone"
-    t.string "price"
-    t.string "rating"
-    t.string "reviews"
-    t.string "latitude"
-    t.string "longitude"
-    t.string "parking"
-    t.string "state"
-    t.string "category"
-    t.string "bbq"
-    t.string "sport"
+  create_table "logins", force: true do |t|
+    t.string   "userName"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "resturants", id: false, force: true do |t|
-    t.string "name"
-    t.string "address"
-    t.string "latitude"
-    t.string "longitude"
-    t.string "city"
-    t.string "state"
-    t.string "country"
-    t.string "zip"
-    t.string "phone"
-    t.string "rating"
-    t.string "category"
+
+  create_table "places", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "locationType"
+    t.string   "category"
+    t.string   "name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.integer  "price"
+    t.decimal  "rating"
+    t.text     "review"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.boolean  "bbq"
+    t.boolean  "sport"
+    t.boolean  "restrooms"
+    t.string   "website"
   end
+
 
   create_table "users", force: true do |t|
     t.string "userId"
