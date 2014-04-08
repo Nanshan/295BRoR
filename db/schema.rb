@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408050212) do
+ActiveRecord::Schema.define(version: 20140408050547) do
 
   create_table "histories", force: true do |t|
     t.string   "userId"
@@ -28,14 +28,6 @@ ActiveRecord::Schema.define(version: 20140408050212) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "userID"
-  end
-
-  create_table "logins", force: true do |t|
-    t.string   "userName"
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "places", force: true do |t|
@@ -84,6 +76,14 @@ ActiveRecord::Schema.define(version: 20140408050212) do
     t.string "number_of_kids"
     t.string "number_of_tweets"
     t.string "number_of_followers"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "userName"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
