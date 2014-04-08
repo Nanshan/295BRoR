@@ -1,11 +1,9 @@
 SelfTracking295B::Application.routes.draw do
-  resources :attractions
+  resources :places
 
-  resources :parks
+  resources :logins
 
   resources :histories
-
-  resources :resturants
   resources :locations 
   root to: "users#index"
   resources :users
