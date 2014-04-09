@@ -9,7 +9,7 @@ SelfTracking295B::Application.routes.draw do
   resources :locations 
   resources :alerts
 
-  post '/login', to: 'users#login'
-  post '/register', to: 'users#register'
+  get '/login', to: 'users#login'
+  get '/register', to: 'users#register'
   
 end

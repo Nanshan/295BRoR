@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
 
   def login
-    @result = "Failure"
+    @result = false
     @user = User.where(["userName = ?", params[:userName]]).first
     if (@user != nil and @user.password == params[:password])
-      @result = "Success"
+      @result = true
     end
   end
 
   def register
-    @result = "Failure"
+    @result = false
     @existingUser = User.where(["userName = ?", params[:userName]]).first
-    if (@existingUser != nil)
+    if (@existingUser == nil)
       @user = User.new
       @user.userName = params[:userName]
       @user.password = params[:password]
       @user.email = params[:email]
       if (@user.save)
-        @result = "Success"
+        @result = true
       end
     end
   end
