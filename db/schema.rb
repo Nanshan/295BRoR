@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408050547) do
+ActiveRecord::Schema.define(version: 20140412054307) do
 
   create_table "histories", force: true do |t|
     t.string   "userId"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140408050547) do
     t.boolean  "sport"
     t.boolean  "restrooms"
     t.string   "website"
+    t.string   "yelpId"
   end
 
   create_table "profiles", force: true do |t|
