@@ -4,8 +4,9 @@ SelfTracking295B::Application.routes.draw do
   resources :histories
   resources :locations 
   resources :alerts
-  resources :users
 
+  get '/users', to: 'users#index'
+  get '/users/:name', to: 'users#show'
   get '/login', to: 'users#login'
   get '/register', to: 'users#register'
   
