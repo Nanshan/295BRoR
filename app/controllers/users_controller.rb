@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  # exposed for ease of testing only
+  def index
+    @users = User.order("id").page(params[:page]).per(50)        
+  end
+
   def login
     @result = false
     @user = User.where(["userName = ?", params[:userName]]).first
