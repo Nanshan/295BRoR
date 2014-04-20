@@ -7,13 +7,13 @@ class UsersController < ApplicationController
 
   # for showing user profile data
   def show
-    @user = User.where(["userName = ?", params[:name]]).first
-    @profile = Profile.where(["userId = ?", @user.id]).first    
+    @user = User.where(["lower(userName) = ?", params[:name].downcase]).first
+    @profile = Profile.where(["userId = ?", @user.id]).first
   end
 
   def login
     @result = false
-    @user = User.where(["userName = ?", params[:userName]]).first
+    @user = User.where(["lower(userName) = ?", params[:userName].downcase]).first
     if (@user != nil and @user.password == params[:password])
       @result = true
     end
@@ -21,12 +21,12 @@ class UsersController < ApplicationController
 
   def register
     @result = false
-    @existingUser = User.where(["userName = ?", params[:userName]]).first
+    @existingUser = User.where(["lower(userName) = ?", params[:userName].downcase]).first
     if (@existingUser == nil)
       @user = User.new
-      @user.userName = params[:userName]
+      @user.userName = params[:userName].downcase
       @user.password = params[:password]
-      @user.email = params[:email]
+      @user.email = params[:email].downcase
       if (@user.save)
         @result = true
 

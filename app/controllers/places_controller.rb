@@ -2,11 +2,11 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @type = params[:type]
-    @category = params[:category]
+    @type = params[:type].downcase
+    @category = params[:category].downcase
     @lat = params[:lat].to_f.abs
     @long = params[:long].to_f.abs
-    @places = Place.where(locationType: @type, category: @category).all
+    @places = Place.where("lower(locationType) = ? AND lower(category) = ?", @type, @category).all
 #    if (params[:lat] != nil and params[:long] != nil)
 #      for r in @places
 #        @r_lat = r.latitude.to_f.abs

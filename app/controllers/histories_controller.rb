@@ -13,7 +13,7 @@ class HistoriesController < ApplicationController
   # POST /histories
   # POST /histories.json
   def create
-    @user_id = User.where(["userName = ?", params[:userName]]).first.id
+    @user_id = User.where(["lower(userName) = ?", params[:userName].downcase]).first.id
     @history = History.new(userId: @user_id, latitude: params[:latitude], longitude: params[:longitude], like: params[:like])
     @history.save
   end
