@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412054307) do
+ActiveRecord::Schema.define(version: 20140421004137) do
 
   create_table "histories", force: true do |t|
     t.string   "userId"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140412054307) do
   end
 
   create_table "locations", force: true do |t|
-    t.string   "latitude"
-    t.string   "longitude"
+    t.decimal  "latitude",   precision: 15, scale: 10
+    t.decimal  "longitude",  precision: 15, scale: 10
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "userID"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20140412054307) do
     t.integer  "price"
     t.decimal  "rating"
     t.text     "review"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.decimal  "latitude",     precision: 15, scale: 10
+    t.decimal  "longitude",    precision: 15, scale: 10
     t.boolean  "bbq"
     t.boolean  "sport"
     t.boolean  "restrooms"
