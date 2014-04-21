@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
     @category = params[:category].downcase
     @lat = params[:lat].to_f.abs
     @long = params[:long].to_f.abs
-    @places = Place.where("lower(locationType) = ? AND lower(category) = ?", @type, @category).all
+    @places = Place.where("lower(\"locationType\") = ? AND lower(category) = ?", @type, @category).all
 #    if (params[:lat] != nil and params[:long] != nil)
 #      for r in @places
 #        @r_lat = r.latitude.to_f.abs
