@@ -3,7 +3,7 @@ class AlertsController < ApplicationController
    # GET /alerts
    def index
      @username = params[:username]
-     @user_id = User.where(["lower(userName) = ?", @username.downcase]).first.id
+     @user_id = User.where(["lower(\"userName\") = ?", @username.downcase]).first.id
      @events = Location.where(["userID = ?", @user_id]).last(4)
      @alert = "No Alert"
      if (@events.length <3)

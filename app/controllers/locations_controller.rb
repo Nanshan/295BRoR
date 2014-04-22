@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @user_id = User.where(["userName = ?", params[:username]]).first.id
+    @user_id = User.where(["\"userName\" = ?", params[:username]]).first.id
     @location = Location.new(latitude: params[:latitude], longitude: params[:longitude], userID: @user_id) 
     @location.save     
   end
