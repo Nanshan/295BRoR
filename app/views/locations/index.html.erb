@@ -3,13 +3,14 @@
 <%= paginate @locations %>
 
 
-<table>
+<table cellspacing="20">
   <thead>
     <tr>
       <th>UserID</th>
       <th>Latitude</th>
       <th>Longitude</th>
-      <th>CreatedTime</th>
+      <th>Created Time (UTC)</th>
+      <th>Created Time (PT)</th>
     </tr>
   </thead>
 
@@ -20,6 +21,7 @@
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
         <td><%= location.created_at %></td>
+        <td><%= location.created_at.in_time_zone("Pacific Time (US & Canada)") %></td>
       </tr>
     <% end %>
   </tbody>
