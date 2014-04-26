@@ -28,6 +28,9 @@ class PlacesController < ApplicationController
     @long = params[:long].to_f
     
     @radius = 100
+    if (params[:radius] != nil)
+      @radius = params[:radius].to_i
+    end    
     
     @places = Place.close_to(@lat, @long, @radius)
   end
