@@ -16,13 +16,13 @@ class AlertsController < ApplicationController
 
      @event = @events.pop
      @places = Array.new
+     @time_at_location = 0
 
      if (@event != nil)
        @places = Place.close_to(@event.latitude, @event.longitude, @radius)    
-     end
 
-     @last_post_time = @event.created_at
-     @time_at_location = 0
+       @last_post_time = @event.created_at
+     end
 
      while (@places.length > 0 and @time_at_location <= ALERT_PERIOD_IN_SECONDS)
        @event = @events.pop
