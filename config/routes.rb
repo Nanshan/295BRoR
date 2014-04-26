@@ -9,5 +9,6 @@ SelfTracking295B::Application.routes.draw do
   get '/users/:name', to: 'users#show'
   get '/login', to: 'users#login'
   get '/register', to: 'users#register'
+  get '/near', to: 'places#near'
   
 end

@@ -22,8 +22,13 @@ class PlacesController < ApplicationController
     # order by number of likes?
   end
 
-  # GET /places/1
-  # GET /places/1.json
-  def show
+  # search within 100m
+  def near
+    @lat = params[:lat].to_f
+    @long = params[:long].to_f
+    
+    @radius = 100
+    
+    @places = Place.close_to(@lat, @long, @radius)
   end
 end
