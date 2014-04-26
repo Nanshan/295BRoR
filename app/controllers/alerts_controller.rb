@@ -1,36 +1,42 @@
 class AlertsController < ApplicationController
 
+   15_MINUTES = 900
+
    # GET /alerts
    def index
+     @alert = "No Alert"
+     
      @username = params[:username]
      @user_id = User.where(["lower(\"userName\") = ?", @username.downcase]).first.id
-     @events = Location.where(["userID = ?", @user_id]).last(4)
-     @alert = "No Alert"
-     if (@events.length <3)
-        @alert = "No Alert"
-     elsif (@events.length == 3)
-       @lat = @events[0].latitude
-       @long = @events[0].longitude
-       if (@lat == @events[1].latitude && @lat == @events[2].latitude && @long == @events[1].longitude && @long == @events[2].longitude)
-         @alert = "Alert"
-       end
-     else
-        if (@events[0].latitude == @events[1].latitude && @events[1].latitude == @events[2].latitude && @events[2].latitude == @events[3].latitude && @events[0].longitude == @events[1].longitude && @events[1].longitude == @events[2].longitude && @events[2].longitude == @events[3].longitude)
-        @alert = "No Alert"
-        elsif (@events[1].latitude == @events[2].latitude && @events[2].latitude == @events[3].latitude && @events[1].longitude == @events[2].longitude && @events[2].longitude == @events[3].longitude)
-           @alert = "Alert"
-        else
-           @alert = "No Alert"
-        end
+     @events = Location.where(["userID = ?", @user_id])
+     @radius = 100
+     if (params[:radius] != nil)
+       @radius = params[:radius].to_i
      end
-     
-     # find 3 most recent events in Location table for this user_id
-     # if all 3 have same location
-     # then get the restaurant at that location
-     # and return the alert
-     #
-     # else (not have 3 most recent events having same location which means user has not been there 15 minutes or maybe user left)
-     # return no alert
-   end
 
+     @event = @events.pop
+     @places = Array.new
+
+     if (@event != nil)
+       @places = Place.close_to(@event.latitude, @event.longitude, @radius)    
+     end
+
+     @last_post_time = @event.created_at
+     @time_at_location = 0
+
+     while (@places.length > 0 and @time_at_location <= 15_MINUTES)
+       @event = @events.pop
+       if (@event != nil)
+         @places = Place.close_to(@event.latitude, @event.longitude, @radius) & @places
+       else
+         break
+       end
+
+       @time_at_location = @event.created_at - @last_post_time
+     end
+
+     if (@places.length > 0 and @time_at_location >= 15_MINUTES)
+       @alert = @places
+     end
+   end
 end

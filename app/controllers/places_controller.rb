@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
     # order by number of likes?
   end
 
-  # search within 100m
+  # search within radius
   def near
     @lat = params[:lat].to_f
     @long = params[:long].to_f
