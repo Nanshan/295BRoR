@@ -1,4 +1,4 @@
 json.array!(@alert) do |place|
-  json.extract! place, :name
+  json.extract! place, :id, :name
 end
 
