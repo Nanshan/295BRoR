@@ -6,13 +6,8 @@
 </p>
 
 <p>
-  <strong>Latitude:</strong>
-  <%= @history.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @history.longitude %>
+  <strong>PlaceID:</strong>
+  <%= @history.placeID %>
 </p>
 
 <p>
@@ -20,5 +15,4 @@
   <%= @history.like %>
 </p>
 
-<%= link_to 'Edit', edit_history_path(@history) %> |
 <%= link_to 'Back', histories_path %>
