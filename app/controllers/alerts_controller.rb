@@ -36,7 +36,12 @@ class AlertsController < ApplicationController
      end
 
      if (@places.length > 0 and @time_at_location >= ALERT_PERIOD_IN_SECONDS)
-       @alert = @places
+       # Remove all places in user's history from @places
+       @places.each do |place|
+         if (History.where(["\"userId\" = ? AND \"placeID\" = ?", @user_id.to_s, place.id]).take == nil)
+	   @alert.push(place)
+         end
+       end
      end
    end
 end
