@@ -17,7 +17,7 @@ class HistoriesController < ApplicationController
     @history = History.new
     @history.userId = @user_id
     @history.placeID = params[:placeID]
-    @history.like = params[:like]
+    @history.like = params[:like].to_i
     @history.save
   end
 end
