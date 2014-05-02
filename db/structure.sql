@@ -49,7 +49,7 @@ SET default_with_oids = false;
 CREATE TABLE histories (
     id integer NOT NULL,
     "userId" character varying(255),
-    "like" character varying(255),
+    "like" integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     "placeID" integer
@@ -217,6 +217,37 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: similarities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE similarities (
+    id integer NOT NULL,
+    user1_id integer NOT NULL,
+    user2_id integer NOT NULL,
+    similarity numeric
+);
+
+
+--
+-- Name: similarities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE similarities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: similarities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE similarities_id_seq OWNED BY similarities.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -281,6 +312,13 @@ ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY similarities ALTER COLUMN id SET DEFAULT nextval('similarities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -317,6 +355,14 @@ ALTER TABLE ONLY profiles
 
 
 --
+-- Name: similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY similarities
+    ADD CONSTRAINT similarities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -329,6 +375,20 @@ ALTER TABLE ONLY users
 --
 
 CREATE INDEX index_on_places_location ON places USING gist (st_geographyfromtext((((('SRID=4326;POINT('::text || longitude) || ' '::text) || latitude) || ')'::text)));
+
+
+--
+-- Name: index_similarities_on_user1_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_similarities_on_user1_id ON similarities USING btree (user1_id);
+
+
+--
+-- Name: index_similarities_on_user2_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_similarities_on_user2_id ON similarities USING btree (user2_id);
 
 
 --
@@ -399,3 +459,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140421011910');
 INSERT INTO schema_migrations (version) VALUES ('20140501061704');
 
 INSERT INTO schema_migrations (version) VALUES ('20140501062654');
+
+INSERT INTO schema_migrations (version) VALUES ('20140502050505');
+
+INSERT INTO schema_migrations (version) VALUES ('20140502051028');
