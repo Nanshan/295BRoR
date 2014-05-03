@@ -168,11 +168,11 @@ CREATE TABLE profiles (
     first_name character varying(255),
     middle_initial character varying(255),
     last_name character varying(255),
-    date_of_birth character varying(255),
+    date_of_birth date,
     gender character varying(255),
     phone character varying(255),
     email character varying(255),
-    martial_status character varying(255),
+    marital_status character varying(255),
     current_location character varying(255),
     hometown_city character varying(255),
     hometown_state character varying(255),
@@ -463,3 +463,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140501062654');
 INSERT INTO schema_migrations (version) VALUES ('20140502050505');
 
 INSERT INTO schema_migrations (version) VALUES ('20140502051028');
+
+INSERT INTO schema_migrations (version) VALUES ('20140503194344');
