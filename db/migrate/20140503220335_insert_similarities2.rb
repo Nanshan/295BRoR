@@ -1,40 +1,16 @@
-class UsersController < ApplicationController
-
-  # exposed for ease of testing only
-  def index
-    @users = User.order("id").page(params[:page]).per(50)        
-  end
-
-  # for showing user profile data
-  def show
-    @user = User.where(["lower(\"userName\") = ?", params[:name].downcase]).first
-    @profile = Profile.where(["\"userId\" = ?", @user.id.to_s]).first
-  end
-
-  def login
-    @result = false
-    @user = User.where(["lower(\"userName\") = ?", params[:userName].downcase]).first
-    if (@user != nil and @user.password == params[:password])
-      @result = true
-    end
-  end
-
-  def register
-    @result = false
-    @existingUser = User.where(["lower(\"userName\") = ?", params[:userName].downcase]).first
-    if (@existingUser == nil)
-      @user = User.new
-      @user.userName = params[:userName].downcase
-      @user.password = params[:password]
-      @user.email = params[:email].downcase
-      if (@user.save)
-        @result = true
-
-	# create profile
-	@profile = Profile.new
-	@profile.userId = @user.id
-	@profile.email = @user.email
-	@profile.save
+class InsertSimilarities2 < ActiveRecord::Migration
+  def change 
+    Profile.all.each do |profile1|
+      Profile.all.each do |profile2|
+        if (profile1 != profile2)
+          # insert similarity record for this profiles
+	  sim = calc_similarity(profile1, profile2)
+	  sim_model = Similarity.new
+          sim_model.user1_id = profile1.userId.to_i
+          sim_model.user2_id = profile2.userId.to_i
+	  sim_model.similarity = sim
+	  sim_model.save
+        end
       end
     end
   end
@@ -79,5 +55,4 @@ class UsersController < ApplicationController
 
     return similarity
   end
-
 end
