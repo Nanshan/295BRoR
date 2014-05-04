@@ -35,6 +35,21 @@ class UsersController < ApplicationController
 	@profile.userId = @user.id
 	@profile.email = @user.email
 	@profile.save
+
+	# create similarity records (bidirectional)
+	Profile.all.each do |profile2|
+          sim = calc_similarity(@profile, profile2)
+	  sim_model = Similarity.new
+          sim_model.user1_id = @user.id
+          sim_model.user2_id = profile2.userId.to_i
+          sim_model.similarity = sim
+          sim_model.save
+	  sim_model2 = Similarity.new
+          sim_model2.user2_id = @user.id
+          sim_model2.user1_id = profile2.userId.to_i
+          sim_model2.similarity = sim
+          sim_model2.save
+        end
       end
     end
   end
