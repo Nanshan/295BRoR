@@ -2,8 +2,7 @@ class PlacesController < ApplicationController
 
   METERS_IN_MILE = 1609.34
 
-  # GET /places
-  # GET /places.json
+  # recommendation (given type, category, latlong)
   def index
     @type = params[:type].downcase
     @category = params[:category].downcase
@@ -19,7 +18,6 @@ class PlacesController < ApplicationController
     if (@places.length > 3)
       @places = @places[0..2]
     end
-    # order by number of likes?
   end
 
   # search within radius
