@@ -19,8 +19,11 @@ class UsersController < ApplicationController
       
       # update the similarities for this user upon login
       # create similarity records
+      
+      @existingProfile = Profile.where(["lower(\"id\") = ?", params[@user.id].downcase]).first
+      
       Profile.all.each do |profile2|
-        sim = calc_similarity(@user.id, profile2)
+        sim = calc_similarity(@profile, profile2)
         sim_model = Similarity.new
           sim_model.user1_id = @user.id
           sim_model.user2_id = profile2.userId.to_i
