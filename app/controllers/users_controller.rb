@@ -97,15 +97,30 @@ class UsersController < ApplicationController
     # marital_status
     if (user1.marital_status != nil and user2.marital_status != nil and user1.marital_status == user2.marital_status)
       similarity += similarity_mod
+    else
+      similarity -= similarity_mod
     end
 
     # current_location
-    
-    # current_location
+    if (user1.current_location != nil and user2.current_location != nil and user1.current_location == user2.current_location)
+      similarity += similarity_mod
+    else
+      similarity -= similarity_mod
+    end
     
     # hometown_city
+    if (user1.hometown_city != nil and user2.hometown_city != nil and user1.hometown_city == user2.hometown_city)
+      similarity += similarity_mod
+    else
+      similarity -= similarity_mod
+    end
     
     # hometown_state
+    if (user1.hometown_state != nil and user2.hometown_state != nil and user1.hometown_state == user2.hometown_state)
+      similarity += similarity_mod
+    else
+      similarity -= similarity_mod
+    end
     
     # hometown_country
     if (user1.hometown_country != nil and user2.hometown_country != nil and user1.hometown_country == user2.hometown_country)
@@ -113,15 +128,28 @@ class UsersController < ApplicationController
     end
     
     # education_level
+    if (user1.education_level != nil and user2.education_level != nil and user1.education_level == user2.education_level)
+      similarity += similarity_mod
+    else
+      similarity -= similarity_mod
+    end
 
     # parental status (has_kids)
     if (user1.has_kids != nil and user2.has_kids != nil and user1.has_kids == user2.has_kids)
       similarity += similarity_mod
+    else
+      similarity -= similarity_mod
     end
 
     # number_of_kids
+    if (user1.number_of_kids != nil and user2.number_of_kids != nil and user1.number_of_kids == user2.number_of_kids)
+      similarity += similarity_mod
+    else
+      similarity -= similarity_mod
+    end
     
     # twitter user (number_of_tweets & number_of_followers)
+    # need to add aditional logic for twitter related data
 
     #if (similarity < 0)
     #  similarity = 0
