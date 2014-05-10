@@ -58,13 +58,29 @@ class UsersController < ApplicationController
     similarity = 1.0
     similarity_mod = 0.2
 
-    # age
+    # age (date_of_birth)
     if (user1.date_of_birth != nil and user2.date_of_birth != nil)
       age_diff = (user1.date_of_birth.year - user2.date_of_birth.year).abs
-      if (age_diff >= 20)
-        similarity -= similarity_mod
-      elsif (age_diff <= 9)
+      if (age_diff <= 9)
         similarity += similarity_mod
+      elsif (age_diff > 9 and age_diff <= 19)
+        similarity -= similarity_mod * 1
+      elsif (age_diff > 19 and age_diff <= 29)
+        similarity -= similarity_mod * 2
+      elsif (age_diff > 29 and age_diff <= 39)
+        similarity -= similarity_mod * 3
+      elsif (age_diff > 39 and age_diff <= 49)
+        similarity -= similarity_mod * 4
+      elsif (age_diff > 49 and age_diff <= 59)
+        similarity -= similarity_mod * 5
+      elsif (age_diff > 59 and age_diff <= 69)
+        similarity -= similarity_mod * 6
+      elsif (age_diff > 69 and age_diff <= 79)
+        similarity -= similarity_mod * 7
+      elsif (age_diff > 79 and age_diff <= 89)
+        similarity -= similarity_mod * 8
+      elsif (age_diff > 89 and age_diff <= 99)
+        similarity -= similarity_mod * 9
       end
     end
 
@@ -73,20 +89,34 @@ class UsersController < ApplicationController
       similarity += similarity_mod
     end
 
-    # marital status
+    # marital_status
     if (user1.marital_status != nil and user2.marital_status != nil and user1.marital_status == user2.marital_status)
       similarity += similarity_mod
     end
 
-    # parental status
+    # current_location
+    
+    # current_location
+    
+    # hometown_city
+    
+    # hometown_state
+    
+    # hometown_country
+    if (user1.hometown_country != nil and user2.hometown_country != nil and user1.hometown_country == user2.hometown_country)
+      similarity += similarity_mod
+    end
+    
+    # education_level
+
+    # parental status (has_kids)
     if (user1.has_kids != nil and user2.has_kids != nil and user1.has_kids == user2.has_kids)
       similarity += similarity_mod
     end
 
-    # home country
-    if (user1.hometown_country != nil and user2.hometown_country != nil and user1.hometown_country == user2.hometown_country)
-      similarity += similarity_mod
-    end
+    # number_of_kids
+    
+    # twitter user (number_of_tweets & number_of_followers)
 
     if (similarity < 0)
       similarity = 0
