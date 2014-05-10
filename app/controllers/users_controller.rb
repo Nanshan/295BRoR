@@ -44,11 +44,11 @@ class UsersController < ApplicationController
           sim_model.user2_id = profile2.userId.to_i
           sim_model.similarity = sim
           sim_model.save
-	  sim_model2 = Similarity.new
-          sim_model2.user2_id = @user.id
-          sim_model2.user1_id = profile2.userId.to_i
-          sim_model2.similarity = sim
-          sim_model2.save
+	  #sim_model2 = Similarity.new
+    #      sim_model2.user2_id = @user.id
+    #      sim_model2.user1_id = profile2.userId.to_i
+    #      sim_model2.similarity = sim
+    #      sim_model2.save
         end
       end
     end
