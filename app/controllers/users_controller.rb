@@ -64,23 +64,23 @@ class UsersController < ApplicationController
       if (age_diff <= 9)
         similarity += similarity_mod
       elsif (age_diff > 9 and age_diff <= 19)
-        similarity -= similarity_mod * 1
+        similarity = similarity - (similarity_mod * 1)
       elsif (age_diff > 19 and age_diff <= 29)
-        similarity -= similarity_mod * 2
+        similarity = similarity - (similarity_mod * 2)
       elsif (age_diff > 29 and age_diff <= 39)
-        similarity -= similarity_mod * 3
+        similarity = similarity - (similarity_mod * 3)
       elsif (age_diff > 39 and age_diff <= 49)
-        similarity -= similarity_mod * 4
+        similarity = similarity - (similarity_mod * 4)
       elsif (age_diff > 49 and age_diff <= 59)
-        similarity -= similarity_mod * 5
+        similarity = similarity - (similarity_mod * 5)
       elsif (age_diff > 59 and age_diff <= 69)
-        similarity -= similarity_mod * 6
+        similarity = similarity - (similarity_mod * 6)
       elsif (age_diff > 69 and age_diff <= 79)
-        similarity -= similarity_mod * 7
+        similarity = similarity - (similarity_mod * 7)
       elsif (age_diff > 79 and age_diff <= 89)
-        similarity -= similarity_mod * 8
+        similarity = similarity - (similarity_mod * 8)
       elsif (age_diff > 89 and age_diff <= 99)
-        similarity -= similarity_mod * 9
+        similarity = similarity - (similarity_mod * 9)
       end
     end
 
@@ -118,9 +118,9 @@ class UsersController < ApplicationController
     
     # twitter user (number_of_tweets & number_of_followers)
 
-    if (similarity < 0)
-      similarity = 0
-    end
+    #if (similarity < 0)
+    #  similarity = 0
+    #end
 
     return similarity
   end
