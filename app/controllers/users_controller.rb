@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if (@user != nil and @user.password == params[:password])
       @result = true
       
-      # update the similarities for this user
+      # update the similarities for this user upon login
       
     end
   end
@@ -90,6 +90,8 @@ class UsersController < ApplicationController
     # gender
     if (user1.gender != nil and user2.gender != nil and user1.gender == user2.gender)
       similarity += similarity_mod
+    else
+      similarity -= similarity_mod  
     end
 
     # marital_status
